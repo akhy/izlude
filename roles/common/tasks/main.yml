@@ -1,0 +1,14 @@
+---
+- name: Ensure Locale installed
+  locale_gen: name=en_US.UTF-8 state=present
+- name: Ensure required common packages installed
+  apt: name={{ item  }} state=present
+  with_items:
+    - ntp
+    - git
+    - supervisor
+- name: Ensure common services started and enabled
+  service: name={{ item  }} state=running enabled=yes
+  with_items:
+    - ntp
+    - supervisor

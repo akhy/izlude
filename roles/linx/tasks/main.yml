@@ -1,0 +1,19 @@
+- include: dirs.yml
+
+- name: Install binary into {{ linx.path.exec }}
+  get_url: dest={{ linx.path.exec }} mode=a+rx url={{ linx.binary_url }}
+- name: Configuration
+  template: src=config.ini.j2 dest={{ linx.path.config }}
+
+- name: Supervisor task
+  template: src=supervisor_confd_linx.conf.j2 dest=/etc/supervisor/conf.d/linx.conf
+  notify: restart supervisor
+
+- name: Nginx configuration
+  template: src=nginx_sites-available_linx.j2 dest=/etc/nginx/sites-available/linx
+- name: Link nginx configuration
+  file:
+    src: "/etc/nginx/sites-available/linx"
+    dest: "/etc/nginx/sites-enabled/linx"
+    state: link
+  notify: restart nginx

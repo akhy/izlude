@@ -1,0 +1,11 @@
+linx:
+  sitename: My Pastebin
+  domain: paste.{{ domain }}
+  port: 5001
+  binary_url: https://github.com/andreimarcu/linx-server/releases/download/v1.1.6/linx-server-v1.1.6_linux-amd64
+  path:
+    home: /opt/linx
+    exec: /opt/linx/linx-server
+    config: /opt/linx/config.ini
+    files: /opt/linx/files/
+    meta: /opt/linx/meta/

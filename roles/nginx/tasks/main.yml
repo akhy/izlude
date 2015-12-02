@@ -1,0 +1,10 @@
+---
+- name: Install
+  apt: name=nginx state=present
+- name: Remove default site
+  file: name={{ item }} state=absent
+  with_items:
+  - /etc/nginx/sites-enabled/default
+  - /etc/nginx/sites-available/default
+- name: Enable and restart
+  service: name=nginx state=started enabled=true

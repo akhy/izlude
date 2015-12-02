@@ -1,0 +1,9 @@
+server {
+    server_name {{ linx.domain }};
+    
+    client_max_body_size 4096M;
+    location / {
+        fastcgi_pass 127.0.0.1:{{ linx.port }};
+        include fastcgi_params;
+    }
+}

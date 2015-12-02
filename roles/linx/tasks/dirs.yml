@@ -1,0 +1,5 @@
+---
+- file: name={{ item }} mode=a+r state=directory
+  with_items:
+    - "{{ linx.path.files }}"
+    - "{{ linx.path.meta }}"
